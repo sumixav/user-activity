@@ -6,6 +6,7 @@ import Modal from "components/Modal";
 import classNames from "classnames";
 import moment from "moment";
 import { convertTo24Hour } from "_utils";
+import { Helmet } from "react-helmet";
 
 const getMomentDetails = (start_time, end_time) => {
   const startTimeArr = start_time
@@ -79,6 +80,7 @@ const Users = () => {
   return (
     usersList && (
       <>
+        <Helmet title="Users Activity" />
         <div className="table-responsive">
           <table className="table table-hover">
             <thead>
