@@ -98,28 +98,30 @@ const Users = () => {
           </table>
         </div>
         {/* {modalId && true && ( */}
-        <Modal isShow={modalId && true} onClose={handleModalClose}>
+        <Modal isShow={modalId && true} onClose={handleModalClose} outerClassName={isShowCalendar ? "calendar-open" : ""}>
           <Modal.Header>User Active Times</Modal.Header>
           <Modal.Body>
-            {selectedUser?.activity_periods?.map((i) => {
-              const { startTimeStr, endTimeStr, date } = getMomentDetails(
-                i.start_time,
-                i.end_time
-              );
-              return (
-                <div
-                  className="active-times-wrapper"
-                  key={selectedUser?.id + date}
-                >
-                  <div className="date">{date}</div>
-                  <div className="row mb-2">
-                    <div className="col-3">{startTimeStr}</div>
-                    <div className="col-2">-</div>
-                    <div className="col-3">{endTimeStr}</div>
+            <div className="container active-times-list">
+              {selectedUser?.activity_periods?.map((i) => {
+                const { startTimeStr, endTimeStr, date } = getMomentDetails(
+                  i.start_time,
+                  i.end_time
+                );
+                return (
+                  <div
+                    className="active-times-wrapper"
+                    key={selectedUser?.id + date}
+                  >
+                    <div className="date">{date}</div>
+                    <div className="row mb-2">
+                      <div className="col">{startTimeStr}</div>
+                      <div className="col text-center">-</div>
+                      <div className="col">{endTimeStr}</div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
             <button className="plain-btn mb-2" onClick={toggleCalendar}>
               {isShowCalendar ? "Close calendar" : "View in calendar"}
             </button>

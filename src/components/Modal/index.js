@@ -7,7 +7,7 @@ import { ModalProvider } from "./context";
 import Portal from "components/Portal";
 import usePrevious from "hooks/usePrevious";
 
-const Modal = ({ isShow, onClose, children }) => {
+const Modal = ({ isShow, onClose, children, outerClassName }) => {
   const [isModal, setIsModal] = useState(isShow);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Modal = ({ isShow, onClose, children }) => {
           aria-labelledby="exampleModalLabel"
           aria-hidden={isModal}
         >
-          <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className={`modal-dialog modal-dialog-centered ${outerClassName}`} role="document">
             <div className="modal-content">{children}</div>
           </div>
         </div>
@@ -70,6 +70,7 @@ Modal.Body = Body;
 
 Modal.defaultProps = {
   isShow: false,
+  outerClassName:""
 };
 
 export default Modal;
